@@ -1,11 +1,13 @@
 package davejang.core.repository;
 
 import davejang.core.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class JpaMemberRepository implements MemberRepository{
 
     private final EntityManager em;
