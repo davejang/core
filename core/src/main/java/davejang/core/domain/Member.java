@@ -2,31 +2,32 @@ package davejang.core.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Member {
 
-    @Id @GeneratedValue
-    private String Id;
-    private String Pw;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String pw;
     private String name;
     private String email;
 
-    public String getId() {
-        return Id;
+    public Long getId() {
+        return id;
     }
 
-    public void setId(String id) {
-        Id = id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPw() {
-        return Pw;
+        return pw;
     }
 
     public void setPw(String pw) {
-        Pw = pw;
+        this.pw = pw;
     }
 
     public String getName() {
