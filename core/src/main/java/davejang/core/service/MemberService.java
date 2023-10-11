@@ -3,7 +3,6 @@ package davejang.core.service;
 import davejang.core.domain.Member;
 import davejang.core.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public Long join(Member member) {
+    public String join(Member member) {
 
         validateDuplicateMember(member);
         memberRepository.save(member);
@@ -35,7 +34,7 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public Optional<Member> findOne(Long memberId) {
+    public Optional<Member> findOne(String memberId) {
         return memberRepository.findById(memberId);
     }
 }

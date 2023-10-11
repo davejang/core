@@ -8,15 +8,25 @@ import javax.persistence.Id;
 public class Member {
 
     @Id @GeneratedValue
-    private Long Id;
+    private String Id;
+    private String Pw;
     private String name;
+    private String email;
 
-    public Long getId() {
+    public String getId() {
         return Id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         Id = id;
+    }
+
+    public String getPw() {
+        return Pw;
+    }
+
+    public void setPw(String pw) {
+        Pw = pw;
     }
 
     public String getName() {
@@ -25,5 +35,13 @@ public class Member {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
