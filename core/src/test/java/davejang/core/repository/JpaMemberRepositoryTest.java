@@ -26,4 +26,17 @@ public class JpaMemberRepositoryTest {
         Member result = memberRepository.findById(member.getId()).get();
         Assertions.assertThat(member).isEqualTo(result);
     }
+
+    @Test
+    public void findByName() {
+        Member member = new Member();
+        member.setPw("abc");
+        member.setEmail("spring@kyungseok.com");
+        member.setName("spring123");
+
+        memberRepository.save(member);
+
+        Member result = memberRepository.findByName("spring123").get();
+        Assertions.assertThat(member).isEqualTo(result);
+    }
 }
