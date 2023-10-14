@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body class="text-center">
+<form class="form-signin" th:action="@{/account/login}" method="post"> <!-- 요청 보내기-->
+    <h1 class="h3 mb-3 font-weight-normal">회원 로그인 예제</h1>
+
+    <div>
+    <label for="username" class="sr-only">아이디</label>
+    <input type="text" id="username" name="username" class="form-control" placeholder="아이디" required autofocus>
+    </div>
+
+    <div>
+    <label for="password" class="sr-only">패스워드</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="패스워드" required>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+
+</form>
+</body>
+</html>
