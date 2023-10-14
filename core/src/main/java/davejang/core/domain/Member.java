@@ -1,18 +1,32 @@
 package davejang.core.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "pw")
     private String pw;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "activation")
+    private char activation;
+
+    @Column(name = "deactivate_date")
+    private Date deactivateDate;
+
+    @Column(name = "type")
+    private String type;
 
     public Long getId() {
         return id;
@@ -44,5 +58,29 @@ public class Member {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public char getActivation() {
+        return activation;
+    }
+
+    public void setActivation(char activation) {
+        this.activation = activation;
+    }
+
+    public Date getDeactivateDate() {
+        return deactivateDate;
+    }
+
+    public void setDeactivateDate(Date deactivateDate) {
+        this.deactivateDate = deactivateDate;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
