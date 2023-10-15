@@ -20,6 +20,7 @@ public class JpaMemberRepositoryTest {
         member.setPw("abc");
         member.setEmail("spring@kyungseok.com");
         member.setName("spring123");
+        member.setType("Admin");
 
         memberRepository.save(member);
 
