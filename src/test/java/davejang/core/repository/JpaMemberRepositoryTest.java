@@ -1,6 +1,7 @@
 package davejang.core.repository;
 
-import davejang.core.domain.Member;
+import davejang.core.member.domain.Member;
+import davejang.core.member.repository.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

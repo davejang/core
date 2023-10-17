@@ -1,4 +1,4 @@
-package davejang.core.domain;
+package davejang.core.member.domain;
 
 import javax.persistence.*;
 import java.util.Date;

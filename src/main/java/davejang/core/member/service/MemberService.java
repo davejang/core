@@ -1,7 +1,7 @@
-package davejang.core.service;
+package davejang.core.member.service;
 
-import davejang.core.domain.Member;
-import davejang.core.repository.MemberRepository;
+import davejang.core.member.domain.Member;
+import davejang.core.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 

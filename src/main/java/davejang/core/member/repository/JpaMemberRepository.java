@@ -1,6 +1,6 @@
-package davejang.core.repository;
+package davejang.core.member.repository;
 
-import davejang.core.domain.Member;
+import davejang.core.member.domain.Member;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

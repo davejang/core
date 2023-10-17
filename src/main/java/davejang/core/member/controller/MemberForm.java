@@ -1,4 +1,4 @@
-package davejang.core.controller;
+package davejang.core.member.controller;
 
 public class MemberForm {
     private String name;

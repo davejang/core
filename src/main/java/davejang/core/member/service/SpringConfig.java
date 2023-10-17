@@ -1,7 +1,7 @@
-package davejang.core.service;
+package davejang.core.member.service;
 
-import davejang.core.repository.JpaMemberRepository;
-import davejang.core.repository.MemberRepository;
+import davejang.core.member.repository.JpaMemberRepository;
+import davejang.core.member.repository.MemberRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

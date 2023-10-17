@@ -1,6 +1,6 @@
-package davejang.core.repository;
+package davejang.core.member.repository;
 
-import davejang.core.domain.Member;
+import davejang.core.member.domain.Member;
 
 import java.util.List;
 import java.util.Optional;

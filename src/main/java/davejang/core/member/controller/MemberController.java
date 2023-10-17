@@ -1,7 +1,7 @@
-package davejang.core.controller;
+package davejang.core.member.controller;
 
-import davejang.core.domain.Member;
-import davejang.core.service.MemberService;
+import davejang.core.member.domain.Member;
+import davejang.core.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

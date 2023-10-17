@@ -1,7 +1,8 @@
 package davejang.core.service;
 
-import davejang.core.domain.Member;
-import davejang.core.repository.MemberRepository;
+import davejang.core.member.service.MemberService;
+import davejang.core.member.domain.Member;
+import davejang.core.member.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
