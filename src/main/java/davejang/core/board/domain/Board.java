@@ -67,4 +67,16 @@ public class Board {
     public void setViewCount(int viewCount) {
         this.viewCount = viewCount;
     }
+
+    @Override
+    public String toString() {
+        return "Board{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", writer='" + writer + '\'' +
+                ", createDate=" + createDate +
+                ", viewCount=" + viewCount +
+                '}';
+    }
 }

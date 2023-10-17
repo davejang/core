@@ -77,4 +77,17 @@ public class Member {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", pw='" + pw + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", activation=" + activation +
+                ", deactivateDate=" + deactivateDate +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }
