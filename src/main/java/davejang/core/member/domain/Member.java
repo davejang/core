@@ -9,22 +9,16 @@ public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
     @Column(name = "pw")
     private String pw;
-
     @Column(name = "name")
     private String name;
-
     @Column(name = "email")
     private String email;
-
     @Column(name = "activation")
     private char activation;
-
     @Column(name = "deactivate_date")
     private Date deactivateDate;
-
     @Column(name = "type")
     private String type;
 
