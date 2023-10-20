@@ -5,15 +5,18 @@
 </head>
 
 <body class="text-center">
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
 <div class="container">
     <form action="members/login" method="post">
-        <div class="form-group">
-            <label for="name">아이디</label>
-            <input type="text" id="name" name="name" placeholder="id">
-        </div>
-        <div class="form-group">
-            <label for="pw">패스워드</label>
-            <input type="text" id="pw" name="pw" placeholder="password">
+        <div>
+            <div class="form-group">
+                <label for="name">아이디</label>
+                <input type="text" id="name" name="name" placeholder="id">
+            </div>
+            <div class="form-group">
+                <label for="pw">패스워드</label>
+                <input type="text" id="pw" name="pw" placeholder="password">
+            </div>
         </div>
         <button type="submit">로그인</button>
         <button type="button" onclick="location.href='members/new'">회원가입</button>
