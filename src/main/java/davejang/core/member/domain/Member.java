@@ -11,9 +11,9 @@ public class Member {
     private Long id;
     @Column(name = "pw")
     private String pw;
-    @Column(name = "name")
+    @Column(name = "name" , unique = true)
     private String name;
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
     @Column(name = "activation")
     private Boolean activation;

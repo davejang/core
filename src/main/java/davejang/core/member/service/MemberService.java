@@ -25,6 +25,24 @@ public class MemberService {
         return member.getId();
     }
 
+    public Member login(Member member) {
+        Optional<Member> checkUser = memberRepository.findByName(member.getName());
+
+        if(checkUser.isEmpty()) {
+            return null;
+        }
+
+        Member loginMember = checkUser.get();
+
+        if(loginMember.getPw().equals(member.getPw())) {
+            return loginMember;
+        }
+        else {
+            return null;
+        }
+
+    }
+
     private void validateDuplicateMember(Member member) {
         memberRepository.findByName(member.getName())
                 .ifPresent(m -> {

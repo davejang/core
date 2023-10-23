@@ -33,4 +33,19 @@ public class MemberController {
 
         return "redirect:/";
     }
+
+    @PostMapping(value = "/members/join")
+    public String login(MemberForm form) {
+        Member loginMember = new Member();
+        loginMember.setName(form.getName());
+        loginMember.setPw(form.getPw());
+
+        if(!memberService.login(loginMember).equals(null)){
+            return "redirect:/";
+        }
+        else {
+            return "redirect:/";
+        }
+
+    }
 }
