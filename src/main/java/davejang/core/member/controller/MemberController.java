@@ -26,6 +26,8 @@ public class MemberController {
     public String create(MemberForm form) {
         Member member = new Member();
         member.setName(form.getName());
+        member.setEmail(form.getEmail());
+        member.setPw(form.getPw());
 
         memberService.join(member);
 

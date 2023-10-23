@@ -16,7 +16,7 @@ public class Member {
     @Column(name = "email")
     private String email;
     @Column(name = "activation")
-    private char activation;
+    private Boolean activation;
     @Column(name = "deactivate_date")
     private Date deactivateDate;
     @Column(name = "type")
@@ -54,11 +54,11 @@ public class Member {
         this.email = email;
     }
 
-    public char getActivation() {
+    public Boolean getActivation() {
         return activation;
     }
 
-    public void setActivation(char activation) {
+    public void setActivation(Boolean activation) {
         this.activation = activation;
     }
 
