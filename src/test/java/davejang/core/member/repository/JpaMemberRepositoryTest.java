@@ -1,4 +1,4 @@
-package davejang.core.repository;
+package davejang.core.member.repository;
 
 import davejang.core.member.domain.Member;
 import davejang.core.member.repository.MemberRepository;
