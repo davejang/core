@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/members")
@@ -39,9 +40,9 @@ public class MemberController {
     }
 
     @PostMapping(value = "/login")
-    public String login(MemberForm form, Member member, HttpServletResponse response) {
-        member.setName(form.getName());
-        member.setPw(form.getPw());
+    public String login(MemberForm form, HttpServletResponse response) {
+        Optional<Member> checkMember = memberService.findByName(form.getName());
+        Member member = checkMember.get();
 
         if(memberService.login(member).equals(null)) {
             return "home";
@@ -49,6 +50,7 @@ public class MemberController {
 
         Cookie idCookie = new Cookie("memberId", String.valueOf(member.getId()));
         response.addCookie(idCookie);
+
         return "members/loginSuccess";
     }
 
