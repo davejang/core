@@ -10,6 +10,11 @@
                 <li class="nav-item">
                     <span th:text="${username}"></span>
                 </li>
+                <li>
+                    <form action="logout" method="post">
+                        <button type="submit" formmethod="post">로그아웃</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>

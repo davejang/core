@@ -36,16 +36,16 @@ public class MemberController {
             return "home";
         }
 
-        model.addAttribute("username", loginMember);
+        model.addAttribute("username", loginMember.getName());
         return "home";
     }
 
-    @GetMapping(value = "members/join")
+    @GetMapping(value = "/join")
     public String createForm() {
-        return "members/createMemberForm";
+        return "createMemberForm";
     }
 
-    @PostMapping(value = "members/join")
+    @PostMapping(value = "/join")
     public String join(MemberForm form, Member member) {
         member.setName(form.getName());
         member.setEmail(form.getEmail());
@@ -56,7 +56,7 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @PostMapping(value = "members/login")
+    @PostMapping(value = "/login")
     public String login(MemberForm form, HttpServletResponse response) {
 
         Member member = memberService.login(form.getName(), form.getPw());
@@ -68,10 +68,10 @@ public class MemberController {
         Cookie idCookie = new Cookie("memberId", String.valueOf(member.getId()));
         response.addCookie(idCookie);
 
-        return "members/loginSuccess";
+        return "loginSuccess";
     }
 
-    @PostMapping(value = "members/logout")
+    @PostMapping(value = "/logout")
     public String logout(HttpServletResponse response) {
         expireCookie(response,"memberId");
         return "redirect:/";
