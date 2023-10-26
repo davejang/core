@@ -4,16 +4,16 @@ import davejang.core.member.domain.Member;
 import davejang.core.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/members")
 public class MemberController {
 
     private final MemberService memberService;
@@ -23,12 +23,29 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @GetMapping(value = "/join")
+    @GetMapping("/")
+    public String loginPage(@CookieValue(name = "memberId", required = false) Long memberId, Model model) {
+
+        if (memberId == null) {
+            return "home";
+        }
+
+        Optional<Member> checkMember = memberService.findOne(memberId);
+        Member loginMember = checkMember.get();
+        if (loginMember == null) {
+            return "home";
+        }
+
+        model.addAttribute("username", loginMember);
+        return "home";
+    }
+
+    @GetMapping(value = "members/join")
     public String createForm() {
         return "members/createMemberForm";
     }
 
-    @PostMapping(value = "/join")
+    @PostMapping(value = "members/join")
     public String join(MemberForm form, Member member) {
         member.setName(form.getName());
         member.setEmail(form.getEmail());
@@ -39,7 +56,7 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @PostMapping(value = "/login")
+    @PostMapping(value = "members/login")
     public String login(MemberForm form, HttpServletResponse response) {
 
         Member member = memberService.login(form.getName(), form.getPw());
@@ -54,7 +71,7 @@ public class MemberController {
         return "members/loginSuccess";
     }
 
-    @PostMapping(value = "/logout")
+    @PostMapping(value = "members/logout")
     public String logout(HttpServletResponse response) {
         expireCookie(response,"memberId");
         return "redirect:/";
