@@ -41,10 +41,10 @@ public class MemberController {
 
     @PostMapping(value = "/login")
     public String login(MemberForm form, HttpServletResponse response) {
-        Optional<Member> checkMember = memberService.findByName(form.getName());
-        Member member = checkMember.get();
 
-        if(memberService.login(member).equals(null)) {
+        Member member = memberService.login(form.getName(), form.getPw());
+
+        if(member == null) {
             return "home";
         }
 

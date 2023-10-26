@@ -25,8 +25,8 @@ public class MemberService {
         return member.getId();
     }
 
-    public Member login(Member member) {
-        Optional<Member> checkUser = memberRepository.findByName(member.getName());
+    public Member login(String name, String pw) {
+        Optional<Member> checkUser = memberRepository.findByName(name);
 
         if(checkUser.isEmpty()) {
             return null;
@@ -34,7 +34,7 @@ public class MemberService {
 
         Member loginMember = checkUser.get();
 
-        if(loginMember.getPw().equals(member.getPw())) {
+        if(loginMember.getPw().equals(pw)) {
             return loginMember;
         }
         else {

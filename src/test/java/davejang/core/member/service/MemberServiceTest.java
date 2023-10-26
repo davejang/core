@@ -62,7 +62,7 @@ class MemberServiceTest {
         memberValid.setName("spring123");
         memberValid.setPw("abc");
 
-        Member loginMember = memberService.login(memberValid);
+        Member loginMember = memberService.login(memberValid.getName(), memberValid.getPw());
         assertEquals(member, loginMember);
     }
 
@@ -79,7 +79,7 @@ class MemberServiceTest {
         memberValid.setName("spring123");
         memberValid.setPw("abc");
 
-        Member loginMember = memberService.login(memberValid);
+        Member loginMember = memberService.login(memberValid.getName(), memberValid.getPw());
         assertEquals(loginMember, null);
     }
 }
