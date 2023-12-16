@@ -1,6 +1,8 @@
 package davejang.core.member.repository;
 
 import davejang.core.member.domain.Member;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -12,6 +14,7 @@ public class JpaMemberRepository implements MemberRepository{
 
     private final EntityManager em;
 
+    @Autowired
     public JpaMemberRepository(EntityManager em) {
         this.em = em;
     }

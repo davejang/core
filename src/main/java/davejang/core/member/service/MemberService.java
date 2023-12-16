@@ -3,12 +3,14 @@ package davejang.core.member.service;
 import davejang.core.member.domain.Member;
 import davejang.core.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Transactional
+@Service
 public class MemberService {
 
     private final MemberRepository memberRepository;
