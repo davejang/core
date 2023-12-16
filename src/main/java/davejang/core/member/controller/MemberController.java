@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Optional;
 
 @Controller
 public class MemberController {
@@ -21,23 +20,6 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
-    }
-
-    @GetMapping("/")
-    public String loginPage(@CookieValue(name = "memberId", required = false) Long memberId, Model model) {
-
-        if (memberId == null) {
-            return "home";
-        }
-
-        Optional<Member> checkMember = memberService.findOne(memberId);
-        Member loginMember = checkMember.get();
-        if (loginMember == null) {
-            return "home";
-        }
-
-        model.addAttribute("username", loginMember.getName());
-        return "home";
     }
 
     @GetMapping(value = "/join")
