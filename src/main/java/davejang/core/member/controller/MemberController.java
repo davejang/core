@@ -57,7 +57,7 @@ public class MemberController {
     }
 
     @PostMapping(value = "/login")
-    public String login(MemberForm form, HttpServletResponse response) {
+    public String login(@CookieValue(name = "memberId", required = false) Long memberId, Model model, MemberForm form, HttpServletResponse response) {
 
         Member member = memberService.login(form.getName(), form.getPw());
 
@@ -67,6 +67,8 @@ public class MemberController {
 
         Cookie idCookie = new Cookie("memberId", String.valueOf(member.getId()));
         response.addCookie(idCookie);
+
+        model.addAttribute("username", member.getName());
 
         return "loginSuccess";
     }
