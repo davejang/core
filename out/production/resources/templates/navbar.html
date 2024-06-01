@@ -9,10 +9,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li th:if="${authExists}" class="nav-item">
-                    <span th:text="${username}"></span>
+                    <span th:text="${currentUser}"></span>
                 </li>
                 <li th:if="${authExists}">
-                    <form action="logout" method="post">
+                    <form th:action="@{/members/logout}" method="post">
                         <button class="w-30 btn btn-secondary btn-lg" type="submit" formmethod="post">로그아웃</button>
                     </form>
                 </li>

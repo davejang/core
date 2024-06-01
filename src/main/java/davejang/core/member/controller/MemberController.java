@@ -5,13 +5,12 @@ import davejang.core.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RequestMapping(value = "/members")
 @Controller
@@ -41,7 +40,7 @@ public class MemberController {
     }
 
     @PostMapping(value = "/login")
-    public String login(@CookieValue(name = "memberId", required = false) Long memberId, Model model, MemberForm form, HttpServletResponse response) {
+    public String login(Long memberId, Model model, MemberForm form, HttpSession session) {
 
         Member member = memberService.login(form.getName(), form.getPw());
 
@@ -49,25 +48,17 @@ public class MemberController {
             return "home";
         }
 
-        Cookie authCookie = new Cookie("auth", String.valueOf(member.getName()));
-        authCookie.setPath("/");
-        response.addCookie(authCookie);
-        model.addAttribute("username", member.getName());
+        session.setAttribute("username", member.getName());
 
-        return "board/mainPage";
+        return "redirect:/board/mainPage";
     }
 
     @PostMapping(value = "/logout")
-    public String logout(HttpServletResponse response) {
-        expireCookie(response,"auth");
-        System.out.println("만료");
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+            session.invalidate();
+        }
         return "redirect:/";
-    }
-
-    private void expireCookie(HttpServletResponse response, String cookieName) {
-        Cookie cookie = new Cookie(cookieName, null);
-        cookie.setPath("/");
-        cookie.setMaxAge(0);
-        response.addCookie(cookie);
     }
 }
