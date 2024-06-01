@@ -49,23 +49,24 @@ public class MemberController {
             return "home";
         }
 
-        Cookie idCookie = new Cookie("memberId", String.valueOf(member.getId()));
-        idCookie.setPath("/");
-        response.addCookie(idCookie);
-
+        Cookie authCookie = new Cookie("auth", String.valueOf(member.getName()));
+        authCookie.setPath("/");
+        response.addCookie(authCookie);
         model.addAttribute("username", member.getName());
 
-        return "members/loginSuccess";
+        return "board/mainPage";
     }
 
     @PostMapping(value = "/logout")
     public String logout(HttpServletResponse response) {
-        expireCookie(response,"memberId");
+        expireCookie(response,"auth");
+        System.out.println("만료");
         return "redirect:/";
     }
 
     private void expireCookie(HttpServletResponse response, String cookieName) {
         Cookie cookie = new Cookie(cookieName, null);
+        cookie.setPath("/");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
     }
