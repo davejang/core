@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+<nav th:replace="~{navbar :: navbarFragment}"></nav>
+<h1>로그인 성공!</h1>
+<span th:text="${username}"></span>
+<button type="button" onclick="location.href='/'">돌아가기</button>
+</body>
+</html>

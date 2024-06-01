@@ -1,11 +1,13 @@
 package davejang.core.member.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Data
 public class Member {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
@@ -21,73 +23,4 @@ public class Member {
     private Date deactivateDate;
     @Column(name = "type")
     private String type;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getPw() {
-        return pw;
-    }
-
-    public void setPw(String pw) {
-        this.pw = pw;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Boolean getActivation() {
-        return activation;
-    }
-
-    public void setActivation(Boolean activation) {
-        this.activation = activation;
-    }
-
-    public Date getDeactivateDate() {
-        return deactivateDate;
-    }
-
-    public void setDeactivateDate(Date deactivateDate) {
-        this.deactivateDate = deactivateDate;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return "Member{" +
-                "id=" + id +
-                ", pw='" + pw + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", activation=" + activation +
-                ", deactivateDate=" + deactivateDate +
-                ", type='" + type + '\'' +
-                '}';
-    }
 }

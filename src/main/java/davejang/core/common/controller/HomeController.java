@@ -1,4 +1,4 @@
-package davejang.core;
+package davejang.core.common.controller;
 
 import davejang.core.member.domain.Member;
 import davejang.core.member.service.MemberService;
@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Controller
@@ -21,7 +22,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String loginPage(@CookieValue(name = "memberId", required = false) Long memberId, Model model) {
+    public String loginPage(@CookieValue(name = "memberId", required = false) Long memberId, Model model, HttpServletResponse response) {
 
         if (memberId == null) {
             return "home";

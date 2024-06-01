@@ -8,10 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+@RequestMapping(value = "/members")
 @Controller
 public class MemberController {
 
@@ -24,7 +26,7 @@ public class MemberController {
 
     @GetMapping(value = "/join")
     public String createForm() {
-        return "createMemberForm";
+        return "members/createMemberForm";
     }
 
     @PostMapping(value = "/join")
@@ -48,11 +50,12 @@ public class MemberController {
         }
 
         Cookie idCookie = new Cookie("memberId", String.valueOf(member.getId()));
+        idCookie.setPath("/");
         response.addCookie(idCookie);
 
         model.addAttribute("username", member.getName());
 
-        return "loginSuccess";
+        return "members/loginSuccess";
     }
 
     @PostMapping(value = "/logout")
