@@ -1,6 +1,5 @@
 package davejang.core.board.controller;
 
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +15,12 @@ public class BoardController {
     public String getMainPage(HttpServletRequest request, Model model) {
 
         return "board/mainPage";
+    }
+
+    @GetMapping(value = "/createBoardForm")
+    public String getCreateBoardFormPage(HttpServletRequest request, Model model) {
+
+        return "board/boardForm";
     }
 
 }

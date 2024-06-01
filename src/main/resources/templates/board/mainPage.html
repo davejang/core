@@ -10,6 +10,21 @@
 <body class="text-center">
 <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
 <p></p>
-<div>테스트 화면</div>
+
+<div class="container">
+    <table class="table">
+        <tread class="table-info">
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성일</th>
+            </tr>
+        </tread>
+        <tbody>
+
+        </tbody>
+    </table>
+    <button class="w-10 btn btn-primary btn" onclick="location.href='/board/createBoardForm'">작성</button>
+</div>
 </body>
 </html>
