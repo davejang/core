@@ -45,7 +45,7 @@ public class MemberController {
         Member member = memberService.login(form.getName(), form.getPw());
 
         if(member == null) {
-            return "home";
+            return "redirect:/";
         }
 
         session.setAttribute("username", member.getName());

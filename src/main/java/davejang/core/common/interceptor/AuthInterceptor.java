@@ -20,23 +20,13 @@ public class AuthInterceptor implements HandlerInterceptor {
         String currentUser;
 
         if (session != null && session.getAttribute("username") != null) {
-            System.out.println((String)session.getAttribute("username"));
             currentUser = (String)session.getAttribute("username");
             request.setAttribute("currentUser", currentUser);
             authExists = true;
         }
 
-
         request.setAttribute("authExists", authExists);
-        System.out.println("authExists:" + authExists);
         return true;
     }
 
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        if(modelAndView != null && request.getSession().getAttribute("username") != null) {
-            modelAndView.addObject("authExists", request.getAttribute("authExists"));
-            modelAndView.addObject("currentUser", request.getAttribute("currentUser"));
-        }
-    }
 }

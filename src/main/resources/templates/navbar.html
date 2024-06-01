@@ -1,19 +1,19 @@
 <nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom"
      xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Localhost</a>
+        <div class="navbar-brand">Localhost</div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="nav nav-pills">
                 <li th:if="${authExists}" class="nav-item">
-                    <span th:text="${currentUser}"></span>
+                    <span class="nav-link" th:text="${currentUser}"></span>
                 </li>
-                <li th:if="${authExists}">
+                <li th:if="${authExists}" class="nav-item">
                     <form th:action="@{/members/logout}" method="post">
-                        <button class="w-30 btn btn-secondary btn-lg" type="submit" formmethod="post">로그아웃</button>
+                        <button class="nav-link" type="submit" formmethod="post">로그아웃</button>
                     </form>
                 </li>
             </ul>
