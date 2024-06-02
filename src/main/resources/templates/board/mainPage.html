@@ -21,7 +21,10 @@
             </tr>
         </tread>
         <tbody>
-
+            <tr th:if="${not #lists.isEmpty(boards)}" th:each="row, status : ${boards}"></tr>
+<!--                <td th:text="${row.id}"></td>-->
+<!--                <td th:text="${row.title}"></td>-->
+<!--                <td th:text="${row.writer}"></td>-->
         </tbody>
     </table>
     <button class="w-10 btn btn-primary btn" onclick="location.href='/board/createBoardForm'">작성</button>

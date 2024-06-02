@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <style>
         .login-form {
-            width: 500px;
+            width: 800px;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
@@ -30,7 +30,16 @@
         <div class="form-group row">
             <label for="content" class="col-sm-2 col-form-label">내용</label>
             <div class="col-sm-10">
-                <input type="text" id="content" name="content" class="form-control" placeholder="content" required>
+                <textarea type="text" rows="15" id="content" name="content" class="form-control" placeholder="content" required></textarea>
+            </div>
+        </div>
+        <p></p>
+        <div class="row">
+            <div class="col">
+                <button class="w-40 btn btn-primary btn" type="submit">작성</button>
+            </div>
+            <div class="col">
+                <button class="w-40 btn btn-secondary btn" type="button" onclick="location.href='/board/mainPage'">이전으로</button>
             </div>
         </div>
     </form>
