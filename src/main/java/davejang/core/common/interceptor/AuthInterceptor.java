@@ -27,4 +27,18 @@ public class AuthInterceptor implements HandlerInterceptor {
         request.setAttribute("authExists", authExists);
         return true;
     }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+        HttpSession session = request.getSession(false);
+        String requestPath = request.getRequestURI();
+
+        if(session == null) {
+            if(requestPath.equals("/") == false &&
+                    requestPath.equals("/members/join") == false) {
+                response.sendRedirect("/");
+            }
+        }
+    }
 }
