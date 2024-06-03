@@ -27,7 +27,7 @@ public class BoardController {
     @GetMapping(value = "/mainPage")
     public String getMainPage(HttpServletRequest request, Model model) {
         List<Board> boardList = boardService.boardList();
-        model.addAttribute("boards", boardList);
+        model.addAttribute("boardList", boardList);
 
         return "board/mainPage";
     }

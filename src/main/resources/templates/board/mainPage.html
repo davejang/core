@@ -17,14 +17,15 @@
             <tr>
                 <th>번호</th>
                 <th>제목</th>
-                <th>작성일</th>
+                <th>작성자</th>
             </tr>
         </tread>
         <tbody>
-            <tr th:if="${not #lists.isEmpty(boards)}" th:each="row, status : ${boards}"></tr>
-<!--                <td th:text="${row.id}"></td>-->
-<!--                <td th:text="${row.title}"></td>-->
-<!--                <td th:text="${row.writer}"></td>-->
+            <tr th:if="${not #lists.isEmpty(boardList)}" th:each="row:${boardList}">
+                <td th:text="${row.id}"></td>
+                <td th:text="${row.title}"></td>
+                <td th:text="${row.writer}"></td>
+            </tr>
         </tbody>
     </table>
     <button class="w-10 btn btn-primary btn" onclick="location.href='/board/createBoardForm'">작성</button>
