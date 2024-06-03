@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -46,6 +47,7 @@ public class BoardController {
         board.setContent(boardForm.getTitle());
         String writer = (String)session.getAttribute("username");
         board.setWriter(writer);
+        board.setCreateDate(LocalDate.now());
         boardService.boardCreate(board);
 
         return "redirect:/board/mainPage";
