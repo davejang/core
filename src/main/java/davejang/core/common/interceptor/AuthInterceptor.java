@@ -40,5 +40,10 @@ public class AuthInterceptor implements HandlerInterceptor {
                 response.sendRedirect("/");
             }
         }
+        else if(session.getAttribute("username") != null) {
+            if(requestPath.equals("/") == true) {
+                response.sendRedirect("/board/mainPage");
+            }
+        }
     }
 }
