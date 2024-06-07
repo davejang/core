@@ -4,6 +4,13 @@
     <link th:href="@{/src/main.static/bootstrap.min.css}"
           href="../src/main/static/bootstrap.min.css" rel ="stylesheet">
     <meta charset="UTF-8">
+    <style>
+        .container {
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            margin: 40px auto;
+        }
+    </style>
 </head>
 
 <nav th:replace="~{navbar :: navbarFragment}"></nav>
@@ -30,6 +37,26 @@
             </tr>
         </tbody>
     </table>
+    <div th:if="${!boardList.isEmpty()}">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${!boardList.hasPrevious} ? 'disabled'">
+                <a class="page-link" th:href="@{|?page=${boardList.number-1}|}">
+                    <span>이전</span>
+                </a>
+            </li>
+            <li th:each="page: ${#numbers.sequence(0, boardList.totalPages-1)}"
+                th:if="${page >= boardList.number-5 and page <= boardList.number+5}"
+                th:classappend="${page == boardList.number} ? 'active'"
+                class="page-item">
+                <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
+            </li>
+            <li class="page-item" th:classappend="${!boardList.hasNext} ? 'disabled'">
+                <a class="page-link" th:href="@{|?page=${boardList.number+1}|}">
+                    <span>다음</span>
+                </a>
+            </li>
+        </ul>
+    </div>
     <button class="w-10 btn btn-primary btn" onclick="location.href='/board/createBoardForm'">작성</button>
 </div>
 </body>

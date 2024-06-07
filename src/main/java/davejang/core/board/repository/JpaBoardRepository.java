@@ -2,9 +2,13 @@ package davejang.core.board.repository;
 
 import davejang.core.board.domain.Board;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,13 +44,20 @@ public class JpaBoardRepository implements BoardRepository{
     }
 
     @Override
-    public List<Board> boardListAll() {
-        return em.createQuery("select m from Board m", Board.class)
-                .getResultList();
+    public Page<Board> boardListAll(Pageable pageable) {
+        String jpql = "SELECT p FROM Board p";
+        long totalRows = getTotalRows();
+
+        TypedQuery<Board> query = em.createQuery(jpql, Board.class);
+        query.setFirstResult((int) pageable.getOffset());
+        query.setMaxResults(pageable.getPageSize());
+
+        return new PageImpl<>(query.getResultList(), pageable, totalRows);
     }
 
-    @Override
-    public void increaseViewCount(Long id) {
-
+    private long getTotalRows() {
+        String countJpql = "SELECT COUNT(p) FROM Board p";
+        TypedQuery<Long> query = em.createQuery(countJpql, Long.class);
+        return query.getSingleResult();
     }
 }

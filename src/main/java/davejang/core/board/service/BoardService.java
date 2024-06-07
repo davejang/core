@@ -2,6 +2,9 @@ package davejang.core.board.service;
 
 import davejang.core.board.domain.Board;
 import davejang.core.board.repository.BoardRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,8 +23,9 @@ public class BoardService {
         boardRepository.create(board);
     }
 
-    public List<Board> boardList() {
-        return boardRepository.boardListAll();
+    public Page<Board> boardList(int page) {
+        Pageable pageable = PageRequest.of(page, 10);
+        return boardRepository.boardListAll(pageable);
     }
 
 
