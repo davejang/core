@@ -5,9 +5,11 @@ import davejang.core.board.repository.BoardRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,7 +26,8 @@ public class BoardService {
     }
 
     public Page<Board> boardList(int page) {
-        Pageable pageable = PageRequest.of(page, 10);
+        Sort sort = Sort.by(Sort.Order.desc("id"));
+        Pageable pageable = PageRequest.of(page, 15, sort);
         return boardRepository.boardListAll(pageable);
     }
 
