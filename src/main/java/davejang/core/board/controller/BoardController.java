@@ -36,6 +36,13 @@ public class BoardController {
         return "board/mainPage";
     }
 
+    @GetMapping(value = "/view")
+    public String viewBoardContent(Model model, Long id) {
+        model.addAttribute("board", boardService.boardView(id).get());
+
+        return "board/boardContent";
+    }
+
     @GetMapping(value = "/createBoardForm")
     public String getCreateBoardFormPage(HttpServletRequest request, Model model) {
 

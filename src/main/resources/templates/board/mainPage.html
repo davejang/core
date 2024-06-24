@@ -31,7 +31,9 @@
         <tbody>
             <tr th:if="${not #lists.isEmpty(boardList)}" th:each="row:${boardList}">
                 <td th:text="${row.id}"></td>
-                <td th:text="${row.title}"></td>
+                <td>
+                    <a th:text="${row.title}" th:href="@{/board/view(id=${row.id})}"></a>
+                </td>
                 <td th:text="${row.writer}"></td>
                 <td th:text="${row.createDate}"></td>
             </tr>

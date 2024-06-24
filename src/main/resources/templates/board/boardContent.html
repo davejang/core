@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/src/main.static/bootstrap.min.css}"
+          href="../src/main/static/bootstrap.min.css" rel ="stylesheet">
+    <meta charset="UTF-8">
+    <style>
+        .container {
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            margin: 40px auto;
+        }
+    </style>
+</head>
+
+<nav th:replace="~{navbar :: navbarFragment}"></nav>
+<body class="text-center">
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+<p></p>
+
+<div class="container">
+    <p th:text="${board.title}"></p>
+    <p th:text="${board.content}"></p>
+    <div class="col">
+        <button class="w-40 btn btn-secondary btn" type="button" onclick="location.href='/board/mainPage'">이전으로</button>
+    </div>
+</div>
+
+</body>
+</html>

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -31,5 +32,8 @@ public class BoardService {
         return boardRepository.boardListAll(pageable);
     }
 
+    public Optional<Board> boardView(Long id) {
+        return boardRepository.read(id);
+    }
 
 }
