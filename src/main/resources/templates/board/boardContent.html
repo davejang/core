@@ -33,8 +33,12 @@
         </tbody>
     </table>
     <p th:text="${board.content}"></p>
+    <div th:if="${writerFlag}" class="col">
+        <button class="w-40 btn btn-secondary btn" type="button">수정</button>
+        <button class="w-40 btn btn-secondary btn" type="button">삭제</button>
+    </div>
     <div class="col">
-        <button class="w-40 btn btn-secondary btn" type="button" onclick="location.href='/board/mainPage'">이전으로</button>
+        <button class="w-40 btn btn-secondary btn" type="button" onclick="location.href='/board/mainPage'">목록으로</button>
     </div>
 </div>
 

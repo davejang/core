@@ -37,8 +37,15 @@ public class BoardController {
     }
 
     @GetMapping(value = "/view")
-    public String viewBoardContent(Model model, Long id) {
-        model.addAttribute("board", boardService.boardView(id).get());
+    public String viewBoardContent(HttpServletRequest request, Model model, Long id) {
+        HttpSession session = request.getSession(false);
+        Board currentBoard = boardService.boardView(id).get();
+
+        if(session.getAttribute("username").equals(currentBoard.getWriter())) {
+            model.addAttribute("writerFlag", true);
+        }
+
+        model.addAttribute("board", currentBoard);
 
         return "board/boardContent";
     }
