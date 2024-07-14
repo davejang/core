@@ -36,4 +36,11 @@ public class BoardService {
         return boardRepository.read(id);
     }
 
+    public void boardDelete(Long id) {
+        Optional<Board> deleteBoard = boardRepository.read(id);
+        if(deleteBoard.isPresent()) {
+            boardRepository.delete(deleteBoard.get());
+        }
+    }
+
 }

@@ -5,7 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.support.JpaEntityInformation;
+import org.springframework.data.jpa.repository.support.JpaEntityInformationSupport;
+import org.springframework.data.repository.core.EntityInformation;
+import org.springframework.data.util.ProxyUtils;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -15,10 +20,12 @@ import java.util.Optional;
 @Repository
 public class JpaBoardRepository implements BoardRepository{
     private final EntityManager em;
+    private final JpaEntityInformation<Board, ?> entityInformation;
 
     @Autowired
     public JpaBoardRepository(EntityManager em){
         this.em = em;
+        this.entityInformation = JpaEntityInformationSupport.getEntityInformation(Board.class, em);
     }
 
     @Override
@@ -39,8 +46,21 @@ public class JpaBoardRepository implements BoardRepository{
     }
 
     @Override
-    public Board delete(Board board) {
-        return null;
+    public void delete(Board board) {
+
+        Assert.notNull(board, "Entity must not be null!");
+
+        if (entityInformation.isNew(board)) {
+            return;
+        }
+
+        Class<?> type = ProxyUtils.getUserClass(board);
+        Board checkExist = (Board)em.find(type, entityInformation.getId(board));
+        if(checkExist == null) {
+            return;
+        }
+
+        em.remove(em.contains(board) ? board : em.merge(board));
     }
 
     @Override

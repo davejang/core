@@ -13,6 +13,6 @@ public interface BoardRepository {
     Board create(Board board);
     Optional<Board> read(Long boardId);
     Board update(Board board);
-    Board delete(Board board);
+    void delete(Board board);
     Page<Board> boardListAll(Pageable pageable);
 }
