@@ -35,7 +35,7 @@
     <p th:text="${board.content}"></p>
     <div th:if="${writerFlag}" class="col">
         <button class="w-40 btn btn-secondary btn" type="button">수정</button>
-        <form th:action="@{'/board/deleteBoard/' + ${board.id}}" method="post">
+        <form th:action="@{/board/deleteBoard ( id=${board.id} )}" method="post">
             <button class="w-40 btn btn-secondary btn" type="submit">삭제</button>
         </form>
     </div>
