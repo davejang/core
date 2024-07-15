@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "/board")
@@ -34,7 +33,7 @@ public class BoardController {
     }
 
     @GetMapping(value = "/view")
-    public String viewBoardContent(HttpServletRequest request, Model model, Long id) {
+    public String viewBoardContent(HttpServletRequest request, Model model, @RequestParam Long id) {
         HttpSession session = request.getSession(false);
         Board currentBoard = boardService.boardView(id).get();
 
