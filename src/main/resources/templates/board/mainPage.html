@@ -42,6 +42,11 @@
     <div th:if="${!boardList.isEmpty()}">
         <ul class="pagination justify-content-center">
             <li class="page-item" th:classappend="${!boardList.hasPrevious} ? 'disabled'">
+                <a class="page-link" th:href="@{|?page=${0}|}">
+                    <span>처음</span>
+                </a>
+            </li>
+            <li class="page-item" th:classappend="${!boardList.hasPrevious} ? 'disabled'">
                 <a class="page-link" th:href="@{|?page=${boardList.number-1}|}">
                     <span>이전</span>
                 </a>
@@ -55,7 +60,12 @@
             <li class="page-item" th:classappend="${!boardList.hasNext} ? 'disabled'">
                 <a class="page-link" th:href="@{|?page=${boardList.number+1}|}">
                     <span>다음</span>
-                </a>s
+                </a>
+            </li>
+            <li class="page-item" th:classappend="${!boardList.hasNext} ? 'disabled'">
+                <a class="page-link" th:href="@{|?page=${boardList.totalPages-1}|}">
+                    <span>끝</span>
+                </a>
             </li>
         </ul>
     </div>

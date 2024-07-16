@@ -10,6 +10,26 @@
             border-radius: 5px;
             margin: 40px auto;
         }
+
+        .content {
+            margin: 30px 30px 30px 30px;
+        }
+
+        .content-table {
+
+        }
+
+        .modif {
+            text-align: right;
+        }
+
+        .modif-btn {
+            display: inline-block;
+        }
+
+        .list-btn {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
@@ -19,28 +39,34 @@
 <p></p>
 
 <div class="container">
-    <table class="table table-hover">
+    <table class="table table-hover content-table">
         <colgroup>
-            <col style="width:10%;" />
+            <col style="width:15%;" />
         </colgroup>
         <tbody>
             <tr>
                 <th scope="row">제목</th>
-                <td th:text="${board.title}"></td>
+                <td align="left" th:text="${board.title}"></td>
+            </tr>
+            <tr>
                 <th scope="row">작성자</th>
-                <td th:text="${board.writer}"></td>
+                <td align="left" th:text="${board.writer}"></td>
+                <th scope="row">조회수</th>
+                <td align="left" th:text="0"></td>
             </tr>
         </tbody>
     </table>
-    <p th:text="${board.content}"></p>
-    <div th:if="${writerFlag}" class="col">
-        <button class="w-40 btn btn-secondary btn" type="button">수정</button>
-        <form th:action="@{/board/deleteBoard ( id=${board.id} )}" method="post">
-            <button class="w-40 btn btn-secondary btn" type="submit">삭제</button>
+    <div class="content">
+        <p align="left" th:text="${board.content}"></p>
+    </div>
+    <div th:if="${writerFlag}" class="modif">
+        <button class="w-40 btn btn-secondary btn modif-btn" type="button">수정</button>
+        <form th:action="@{/board/deleteBoard ( id=${board.id} )}" method="post" class="modif-btn">
+            <button class="w-40 btn btn-secondary btn modif-btn" type="submit">삭제</button>
         </form>
     </div>
     <div class="col">
-        <button class="w-40 btn btn-secondary btn" type="button" onclick="location.href='/board/mainPage'">목록으로</button>
+        <button class="w-40 btn btn-secondary btn list-btn" type="button" onclick="location.href='/board/mainPage'">목록으로</button>
     </div>
 </div>
 

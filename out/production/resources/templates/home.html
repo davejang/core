@@ -34,6 +34,9 @@
             </div>
         </div>
         <p></p>
+        <div th:if="${errorMessage}" style="color: red;">
+            <p th:text="${errorMessage}" align="left"></p>
+        </div>
         <div class="row">
             <div class="col">
                 <button class="w-100 btn btn-primary btn" type="submit">로그인</button>
