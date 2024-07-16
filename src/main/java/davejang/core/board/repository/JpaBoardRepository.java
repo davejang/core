@@ -65,7 +65,7 @@ public class JpaBoardRepository implements BoardRepository{
 
     @Override
     public Page<Board> boardListAll(Pageable pageable) {
-        String jpql = "SELECT p FROM Board p";
+        String jpql = "SELECT p FROM Board p ORDER BY id DESC";
         long totalRows = getTotalRows();
 
         TypedQuery<Board> query = em.createQuery(jpql, Board.class);
