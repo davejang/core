@@ -4,6 +4,9 @@
     <link th:href="@{/src/main.static/bootstrap.min.css}"
           href="../src/main/static/bootstrap.min.css" rel ="stylesheet">
     <meta charset="UTF-8">
+    <!-- Bootstrap JS (부트스트랩 JS는 jQuery에 의존하므로 jQuery를 먼저 로드해야 합니다.) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
         .container {
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
@@ -60,17 +63,40 @@
         <p align="left" th:text="${board.content}"></p>
     </div>
     <div th:if="${writerFlag}" class="modif">
-        <button class="w-40 btn btn-secondary btn modif-btn" type="button">수정</button>
-        <form th:action="@{/board/deleteBoard ( id=${board.id} )}" method="post" class="modif-btn">
-            <button class="w-40 btn btn-secondary btn modif-btn" type="submit">삭제</button>
-        </form>
+        <button class="w-40 btn btn-primary btn modif-btn" type="button">수정</button>
+<!--        <form th:action="@{/board/deleteBoard ( id=${board.id} )}" method="post" class="modif-btn">-->
+<!--            <button class="w-40 btn btn-primary btn modif-btn" type="submit">삭제</button>-->
+<!--        </form>-->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">삭제</button>
     </div>
     <div class="col">
         <form th:action="@{/board/return ( page=${currentPage} )}" method="post" class="modif-btn">
             <button class="w-40 btn btn-secondary btn list-btn" type="submit">목록으로</button>
         </form>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">경고</h5>
+                </div>
+                <div class="modal-body">
+                    게시글을 삭제하시겠습니까?
+                </div>
+                <div class="modal-footer">
+                    <form th:action="@{/board/deleteBoard ( id=${board.id} )}" method="post" class="modif-btn">
+                        <button type="submit" class="btn btn-primary">예</button>
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">아니오</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 
 </body>
 </html>

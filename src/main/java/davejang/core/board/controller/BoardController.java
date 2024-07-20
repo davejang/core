@@ -25,7 +25,9 @@ public class BoardController {
     }
 
     @GetMapping(value = "/mainPage")
-    public String getMainPage(HttpServletRequest request, Model model, @RequestParam(value="page", defaultValue = "0") int page) {
+    public String getMainPage(HttpServletRequest request,
+                              Model model,
+                              @RequestParam(value="page", defaultValue = "0") int page) {
 
         Page<Board> boardList = boardService.boardList(page);
         model.addAttribute("boardList", boardList);
@@ -36,7 +38,9 @@ public class BoardController {
     }
 
     @PostMapping(value = "/return")
-    public String returnMainPage(RedirectAttributes redirectAttributes, @RequestParam int page) {
+    public String returnMainPage(RedirectAttributes redirectAttributes,
+                                 @RequestParam int page) {
+
         redirectAttributes.addAttribute("page", page);
         return "redirect:/board/mainPage";
     }
@@ -61,13 +65,17 @@ public class BoardController {
     }
 
     @GetMapping(value = "/createBoardForm")
-    public String getCreateBoardFormPage(HttpServletRequest request, Model model) {
+    public String getCreateBoardFormPage(HttpServletRequest request,
+                                         Model model) {
 
         return "board/boardForm";
     }
 
     @PostMapping(value = "/createBoard")
-    public String createBoard(HttpServletRequest request, BoardForm boardForm, Board board) {
+    public String createBoard(HttpServletRequest request,
+                              BoardForm boardForm,
+                              Board board) {
+
         HttpSession session = request.getSession(false);
 
         board.setTitle(boardForm.getTitle());

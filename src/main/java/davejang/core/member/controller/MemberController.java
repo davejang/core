@@ -41,7 +41,11 @@ public class MemberController {
     }
 
     @PostMapping(value = "/login")
-    public String login(Long memberId, Model model, RedirectAttributes redirectAttributes, MemberForm form, HttpSession session) {
+    public String login(Long memberId,
+                        Model model,
+                        RedirectAttributes redirectAttributes,
+                        MemberForm form,
+                        HttpSession session) {
 
         Member member = memberService.login(form.getName(), form.getPw());
 
