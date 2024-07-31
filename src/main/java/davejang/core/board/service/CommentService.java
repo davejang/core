@@ -1,5 +1,6 @@
 package davejang.core.board.service;
 
+import davejang.core.board.domain.Board;
 import davejang.core.board.domain.Comment;
 import davejang.core.board.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,10 @@ public class CommentService {
         return commentRepository.findById(id);
     }
 
+    public void createComment(Comment comment) {
+        commentRepository.save(comment);
+    }
+
     public void deleteComment(Long id) {
         commentRepository.deleteById(id);
     }
@@ -36,6 +41,10 @@ public class CommentService {
             return commentRepository.save(comment);
         }
         return null;
+    }
+
+    public List<Comment> getCommentByBoardId(Long boardId) {
+        return commentRepository.findByBoardId(boardId);
     }
 
 }

@@ -12,6 +12,7 @@
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
             border-radius: 5px;
             margin: 10px auto;
+            padding: 5px 5px 5px 5px;
         }
 
         .content {
@@ -60,18 +61,44 @@
     <div class="content">
         <p align="left" th:text="${board.content}"></p>
     </div>
-
-</div>
-<div class="container">
     <div class="btn-col">
         <form th:action="@{/board/return ( page=${currentPage} )}" method="post" class="modif-btn">
             <button class="w-40 btn btn-secondary btn modif-btn" type="submit">목록으로</button>
         </form>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal">댓글작성</button>
         <button th:if="${writerFlag}" class="w-40 btn btn-primary btn modif-btn" type="button">수정</button>
         <button th:if="${writerFlag}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">삭제</button>
     </div>
 </div>
-<!-- Modal -->
+<div class="container">
+    <tr th:if="${not #lists.isEmpty(commentList)}" th:each="row, iterStat:${commentList}">
+        <td th:text="${row.writer}"></td>
+        <td th:text="${row.createDate}"></td>
+    </tr>
+</div>
+<!-- Comment Modal -->
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="commentModalLabel">댓글작성</h5>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-10">
+                    <textarea type="text" rows="15" id="content" name="content" class="form-control" placeholder="content" required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form th:action="@{/board/comment ( id=${board.id}, page=${currentPage})}" method="post" class="modif-btn">
+                    <button type="submit" class="btn btn-primary">작성</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">아니오</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -91,8 +118,5 @@
         </div>
     </div>
 </div>
-
-
-
 </body>
 </html>
