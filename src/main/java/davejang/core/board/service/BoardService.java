@@ -2,6 +2,7 @@ package davejang.core.board.service;
 
 import davejang.core.board.domain.Board;
 import davejang.core.board.repository.BoardRepository;
+import davejang.core.board.repository.CommentRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
