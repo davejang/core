@@ -32,6 +32,22 @@
             display: inline-block;
         }
 
+        .comment {
+            text-align: left;
+        }
+
+        .comment-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .comment-content {
+            text-align: left;
+            margin: 10px auto;
+        }
+
     </style>
 </head>
 
@@ -70,11 +86,12 @@
         <button th:if="${writerFlag}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">삭제</button>
     </div>
 </div>
-<div class="container">
-    <tr th:if="${not #lists.isEmpty(commentList)}" th:each="row, iterStat:${commentList}">
-        <td th:text="${row.writer}"></td>
-        <td th:text="${row.createDate}"></td>
-    </tr>
+<div class="container" th:if="${not #lists.isEmpty(commentList)}" th:each="row, iterStat:${commentList}">
+    <div class="comment-container">
+        <h5 class="comment" th:text="${row.writer}"></h5>
+        <tr th:text="${row.createDate}"></tr>
+    </div>
+    <div class="comment-content" th:text="${row.content}"></div>
 </div>
 <!-- Comment Modal -->
 <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel"
@@ -84,17 +101,17 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="commentModalLabel">댓글작성</h5>
             </div>
-            <div class="modal-body">
-                <div class="col-sm-10">
-                    <textarea type="text" rows="15" id="content" name="content" class="form-control" placeholder="content" required></textarea>
+            <form th:action="@{/board/comment ( id=${board.id}, page=${currentPage})}" method="post" class="modif-btn">
+                <div class="modal-body">
+                    <div class="col-sm-10">
+                        <textarea type="text" rows="15" id="content" name="content" class="form-control" placeholder="content" required></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <form th:action="@{/board/comment ( id=${board.id}, page=${currentPage})}" method="post" class="modif-btn">
+                <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">작성</button>
-                </form>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">아니오</button>
-            </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">아니오</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
