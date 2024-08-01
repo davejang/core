@@ -61,13 +61,16 @@ public class BoardController {
 
         List<Comment> commentList = commentService.getCommentByBoardId(id);
 
-        if(session.getAttribute("username").equals(currentBoard.getWriter())) {
+        String username = (String) session.getAttribute("username");
+
+        if(username.equals(currentBoard.getWriter())) {
             model.addAttribute("writerFlag", true);
         }
 
         model.addAttribute("board", currentBoard);
         model.addAttribute("currentPage", page);
         model.addAttribute("commentList", commentList);
+        model.addAttribute("currentUser", username);
 
         return "board/boardContent";
     }
@@ -123,5 +126,21 @@ public class BoardController {
         redirectAttributes.addAttribute("page", page);
         return "redirect:/board/view";
     }
+
+    @DeleteMapping(value = "/comment")
+    public String deleteComment(HttpServletRequest request,
+                              RedirectAttributes redirectAttributes,
+                              @RequestParam final Long boardId,
+                              @RequestParam final Long commentId,
+                              @RequestParam final int page) {
+
+        commentService.deleteComment(commentId);
+
+        redirectAttributes.addAttribute("id", boardId);
+        redirectAttributes.addAttribute("page", page);
+        return "redirect:/board/view";
+
+    }
+
 
 }

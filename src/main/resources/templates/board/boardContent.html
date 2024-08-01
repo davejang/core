@@ -92,6 +92,12 @@
         <tr th:text="${row.createDate}"></tr>
     </div>
     <div class="comment-content" th:text="${row.content}"></div>
+    <div class="btn-col">
+        <form th:action="@{/board/comment ( commentId=${row.id} ,boardId=${board.id}, page=${currentPage} )}" th:method="delete" class="modif-btn">
+            <button th:if="${currentUser} == ${row.writer}" type="submit" class="btn btn-primary">삭제</button>
+        </form>
+<!--        <button th:if="${currentUser} == ${row.writer}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentDeleteModal">삭제</button>-->
+    </div>
 </div>
 <!-- Comment Modal -->
 <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel"
@@ -104,7 +110,7 @@
             <form th:action="@{/board/comment ( id=${board.id}, page=${currentPage})}" method="post" class="modif-btn">
                 <div class="modal-body">
                     <div class="col-sm-10">
-                        <textarea type="text" rows="15" id="content" name="content" class="form-control" placeholder="content" required></textarea>
+                        <textarea type="text" rows="5" id="content" name="content" class="form-control" placeholder="content" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -112,6 +118,26 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">아니오</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+<!-- Commnet Delete Modal -->
+<div class="modal fade" id="commentDeleteModal" tabindex="-1" role="dialog" aria-labelledby="commentDeleteModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="commentDeleteModalLabel">경고</h5>
+            </div>
+            <div class="modal-body">
+                댓글을 삭제하시겠습니까?
+            </div>
+            <div class="modal-footer">
+<!--                <form th:action="@{/board/comment ( boardId=${board.id}, page=${currentPage} )}" method="delete" class="modif-btn">-->
+<!--                    <button type="submit" class="btn btn-primary">예</button>-->
+<!--                </form>-->
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">아니오</button>
+            </div>
         </div>
     </div>
 </div>

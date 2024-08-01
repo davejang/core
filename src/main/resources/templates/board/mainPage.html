@@ -35,7 +35,11 @@
             <tr th:if="${not #lists.isEmpty(boardList)}" th:each="row, iterStat:${boardList}">
                 <td th:text="${totalItems - (currentPage)*15 - iterStat.index}"></td>
                 <td>
-                    <a th:text="${row.title}" th:href="@{/board/view (id=${row.id}, page=${currentPage}) }"></a>
+<!--                    <form th:action="@{/board/view ( page=${currentPage} )}" method="post" class="modif-btn">-->
+<!--                        <button class="w-40 btn btn-secondary btn modif-btn" type="submit">목록으로</button>-->
+<!--                    </form>-->
+                    <a th:text="${row.title}" th:href="@{/board/view (id=${row.id}, page=${currentPage}) }"
+                       style="text-decoration:none;color:black;"></a>
                 </td>
                 <td th:text="${row.writer}"></td>
                 <td th:text="${row.createDate}"></td>
